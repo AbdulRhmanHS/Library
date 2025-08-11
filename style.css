@@ -32,6 +32,11 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: width 0.3s;
+}
+
+.book-expanded {
+  width: 200px;
 }
 
 .book-shelf {

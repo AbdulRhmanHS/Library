@@ -27,7 +27,9 @@ function updateShelves() {
       currentShelf.classList.add('book-shelf');
       booksContaier.appendChild(currentShelf);
     }
-    currentShelf.appendChild(book);
+    if (currentShelf) {
+      currentShelf.appendChild(book);
+    }
   });
 
 }
@@ -36,3 +38,9 @@ window.addEventListener("resize", updateShelves);
 
 // Run on load
 updateShelves();
+
+allBooks.forEach(book => {
+  book.addEventListener("click", () => {
+    book.classList.toggle("book-expanded");
+  });
+});
