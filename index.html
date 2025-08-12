@@ -10,7 +10,31 @@
 <body>
   <header>
     <h1>Welcome to your Library</h1>
-    <button id="add-book">Add Book</button>
+    <dialog>
+      <form id="add-book-form">
+        <section class="title-section">
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" required>
+        </section>
+        <section class="author-section">
+          <label for="author">Author:</label>
+          <input type="text" id="author" name="author" required>
+        </section>
+        <section class="pages-section">
+          <label for="pages">Pages:</label>
+          <input type="number" id="pages" name="pages" required>
+        </section>
+        <section class="read-section">
+          <input type="checkbox" id="read" name="read">
+          <label for="read">Read</label>
+        </section>
+       <section class="button-section">
+          <button type="submit">Add book</button>
+          <button id="cancel-button">Cancel</button>
+       </section>
+      </form>
+    </dialog>
+    <button id="add-book">Add a book</button>
   </header>
   <main>
     <section class="book-container">
