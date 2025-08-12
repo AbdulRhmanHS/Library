@@ -25,6 +25,8 @@ main {
 }
 
 .book-shelf > * {
+  cursor: default;
+  user-select: none;
   background-color: rgb(219, 219, 219);
   border-radius: 5px;
   min-height: 250px;
@@ -41,10 +43,21 @@ main {
 
 .book-shelf {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   padding: 5px;
   width: 100%;
   height: 250px;
   border-radius: 5px;
   background-color: rgb(105, 86, 62);
+}
+
+#add-book {
+  width: 200px;
+  background-color: white;
+  color: rgb(105, 86, 62);
+  border-radius: 5px;
+  padding: 10px;
+  border: 2px solid rgb(105, 86, 62);
+  cursor: pointer;
+  font-size: 20px;
 }
