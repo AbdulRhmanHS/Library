@@ -1,7 +1,16 @@
+:root {
+  --main-color: #61cf65;
+  --background-color: #f9f9f9;
+  --header-color: #222;
+  --light-border-color: #cfcfcf;
+  --shelf-color: rgb(168, 168, 168);
+}
+
 body, html {
   margin: 0;
-  padding: 10px;
+  padding: 0 10px;
   min-height: 100%;
+  background-color: var(--background-color);
 }
 
 header {
@@ -14,11 +23,20 @@ header {
 }
 
 h1 {
+  width: min(450px, 90%);
   text-align: center;
   font-size: 40px;
   margin-top: 100px;
-  margin-bottom: 50px;
-  color: rgb(73, 73, 73);
+  margin-bottom: 10px;
+  color: var(--header-color);
+}
+
+h2 {
+  width: min(400px, 80%);
+  text-align: center;
+  font-weight: 400;
+  color: var(--shelf-color);
+  margin-bottom: 40px;
 }
 
 main {
@@ -28,10 +46,18 @@ main {
   height: 100%;
 }
 
+dialog {
+  border: none;
+  width: min(500px, 80%);
+  height: min(400px, 80%);
+}
+
 form {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: start;
+  justify-content: space-between;
   gap: 20px;
 }
 
@@ -42,8 +68,43 @@ form > * {
   width: 100%;
 }
 
+legend {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--light-border-color);
+  width: 100%;
+  height: 3rem;
+  padding: 5px 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
 p {
   margin: 0;
+}
+
+input {
+  transition: border-color 0.3s;
+  border: 1px solid var(--light-border-color);
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid var(--main-color);
+}
+
+.title-section {
+  margin-top: 5rem;
+}
+
+#title-text, #author-text, #pages-text {
+  height: 3rem;
+  padding: 0 10px;
+  font-size: 14px;
 }
 
 .read-section {
@@ -60,15 +121,36 @@ p {
   width: 100%;
 }
 
+#insert-book, #cancel-button {
+  border: none;
+  height: 3rem;
+  color: var(--background-color);
+  cursor: pointer;
+}
+
+#insert-book {
+  background-color: var(--main-color);
+}
+
+#cancel-button {
+  background-color: var(--shelf-color);
+}
+
+#read {
+  accent-color: var(--main-color);
+}
+
 .book-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
 
 .book-shelf > * {
   cursor: default;
-  background-color: rgb(199, 192, 192);
+  background-color: var(--main-color);
+  color: var(--background-color);
   border-radius: 5px;
   min-height: 250px;
   padding: 10px;
@@ -85,6 +167,7 @@ p {
   gap: 5px;
   overflow-x: hidden;
   overflow-y: visible;
+  font-size: 1em;
 }
 
 .upper-details {
@@ -107,6 +190,7 @@ p {
 
 #remove-button {
   grid-area: removeB;
+  color: var(--background-color);
   cursor: pointer;
   width: 20px;
   font-size: 15px;
@@ -120,7 +204,7 @@ p {
 }
 
 #remove-button:hover {
-  color: white;
+  color: var(--header-color);
 }
 
 .lower-details {
@@ -160,26 +244,34 @@ p {
   width: 100%;
   height: 250px;
   border-radius: 5px;
-  background-color: rgb(105, 86, 62);
+  background-color: var(--background-color);
+  border: 1px solid var(--shelf-color);
 }
 
 #add-book {
   width: 200px;
-  background-color: white;
-  color: rgb(105, 86, 62);
-  border-radius: 5px;
+  height: 60px;
+  background-color: var(--background-color);
+  color: var(--header-color);
+  border-radius: 3px;
   padding: 10px;
-  border: 2px solid rgb(105, 86, 62);
+  border: 1px solid var(--light-border-color);
   cursor: pointer;
-  font-size: 20px;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+#add-book:hover {
+  color: var(--main-color);
+  border-color: var(--main-color);
 }
 
 .read {
-  color: rgb(255, 246, 246);
+  color: var(--background-color);
   font-size: 1.5rem;
 }
 
 .unread {
-  color: rgba(97, 97, 97, 0.445);
+  color: var(--light-border-color);
   font-size: 1.5rem;
 }

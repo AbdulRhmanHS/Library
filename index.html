@@ -10,26 +10,25 @@
 <body>
   <header>
     <h1>Welcome to your Library</h1>
+    <h2>Organize your books and have some fun with coloring your favourite books</h2>
     <dialog>
       <form id="add-book-form">
+        <legend>Add your book</legend>
         <section class="title-section">
-          <label for="title">Title:</label>
-          <input type="text" id="title" name="title" required>
+          <input type="text" id="title-text" name="title" placeholder="Title" required>
         </section>
         <section class="author-section">
-          <label for="author">Author:</label>
-          <input type="text" id="author" name="author" required>
+          <input type="text" id="author-text" name="author" placeholder="Author" required>
         </section>
         <section class="pages-section">
-          <label for="pages">Pages:</label>
-          <input type="number" id="pages" name="pages" required>
+          <input type="number" id="pages-text" name="pages" placeholder="Number of pages" required>
         </section>
         <section class="read-section">
           <input type="checkbox" id="read" name="read">
-          <label for="read">Read</label>
+          <label for="read">I've already read the book</label>
         </section>
        <section class="button-section">
-          <button type="submit">Add book</button>
+          <button type="submit" id="insert-book">Add book</button>
           <button id="cancel-button">Cancel</button>
        </section>
       </form>

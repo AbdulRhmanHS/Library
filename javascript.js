@@ -210,9 +210,9 @@ form.addEventListener('submit', (e) => {
   
   e.preventDefault(); // Prevent the default form submission behavior
 
-  const title = document.getElementById('title').value;
-  const author = document.getElementById('author').value;
-  const pages = document.getElementById('pages').value;
+  const title = document.getElementById('title-text').value;
+  const author = document.getElementById('author-text').value;
+  const pages = document.getElementById('pages-text').value;
   const read = document.getElementById('read').checked;
 
   addBookToLibrary(title, author, pages, read);
