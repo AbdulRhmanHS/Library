@@ -83,13 +83,15 @@ function addExpandableBook() {
     const id = newBook.dataset.id;
     const bookObj = library.find(myBook => myBook.id == id);
 
-    if (newBook.classList.contains("book-expanded")) {
+    if (newBook.classList.contains("book-expanded")) { // Expanded book
 
-      while (newBook.classList.contains("book-spine")) {
+      while (newBook.firstChild) {
         newBook.classList.remove("book-spine");
         newBook.removeChild(newBook.firstChild);
       }
 
+      const upperDetails = document.createElement("div");
+      upperDetails.classList.add("upper-details");
       const title = document.createElement("p");
       title.id = "title";
       title.textContent = "Title: " + bookObj.title;
@@ -100,7 +102,7 @@ function addExpandableBook() {
       // Remove button for each book
       const removeButton = document.createElement("button");
       removeButton.id = "remove-button";
-      removeButton.textContent = "x";
+      removeButton.textContent = "X";
       removeButton.addEventListener('click', () => {
         const id = newBook.dataset.id;
         const index = allBooks.indexOf(newBook);
@@ -112,51 +114,69 @@ function addExpandableBook() {
           library.splice(libraryIndex, 1);
         }
         newBook.remove();
+        updateShelves();
       });
 
-      const upperDetails = document.createElement("div");
-      upperDetails.classList.add("upper-details");
       upperDetails.appendChild(title);
       upperDetails.appendChild(pages);
       upperDetails.appendChild(removeButton);
       newBook.appendChild(upperDetails);
 
+      const lowerDetails = document.createElement("div");
+      lowerDetails.classList.add("lower-details");
       const read = document.createElement("p");
       read.textContent = "R";
       bookObj.read ? read.classList.add("read") : read.classList.add("unread");
       const author = document.createElement("p");
       author.textContent = "Author: " + bookObj.author;
-      const lowerDetails = document.createElement("div");
-      lowerDetails.classList.add("lower-details");
+
       lowerDetails.appendChild(read);
       lowerDetails.appendChild(author);
       newBook.appendChild(lowerDetails);
     }
-    else if (bookObj) {
+    else if (bookObj) { // Book spine
 
       while (newBook.firstChild) {
         newBook.removeChild(newBook.firstChild);
       }
 
-      const title = document.createElement("p");
       newBook.classList.toggle("book-spine");
+      const title = document.createElement("p");
       title.textContent = bookObj.title;
+
+      const read = document.createElement("p");
+      read.classList.add("spine-bottom");
+      read.textContent = "R";
+      bookObj.read ? read.classList.add("read") : read.classList.add("unread");
+
       newBook.appendChild(title);
+      newBook.appendChild(read);
     }
   });
 
   // At first the book spine will show
-  const title = document.createElement("p");
+  const id = newBook.dataset.id;
+  const bookObj = library.find(myBook => myBook.id == id);
+
   newBook.classList.toggle("book-spine");
+  const title = document.createElement("p");
   title.textContent = library[library.length - 1].title;
+  
+  const read = document.createElement("p");
+  read.classList.add("spine-bottom");
+  read.textContent = "R";
+  bookObj.read ? read.classList.add("read") : read.classList.add("unread");
+
   newBook.appendChild(title);
+  newBook.appendChild(read);
 }
 
 // Form functions
 addBookButton.addEventListener("click", () => {
   dialog.showModal();
 });
-cancelButton.addEventListener("click", () => {
+cancelButton.addEventListener("click", (e) => {
+  e.preventDefault();
   dialog.close();
 });
 form.addEventListener('submit', (e) => {

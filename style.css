@@ -107,12 +107,19 @@ p {
 
 #remove-button {
   grid-area: removeB;
+  cursor: pointer;
   width: 20px;
+  background: none;
+  border: none;
   display: flex;
   justify-self: end;
   align-self: start;
   justify-content: center;
   align-items: center;
+}
+
+#remove-button:hover {
+  color: white;
 }
 
 .lower-details {
@@ -127,8 +134,12 @@ p {
   writing-mode: vertical-lr;
   text-orientation: sideways;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+}
+
+.spine-bottom {
+  writing-mode: horizontal-tb;
 }
 
 .book-spine p {
