@@ -68,7 +68,7 @@ p {
 
 .book-shelf > * {
   cursor: default;
-  background-color: rgb(219, 219, 219);
+  background-color: rgb(199, 192, 192);
   border-radius: 5px;
   min-height: 250px;
   padding: 10px;
@@ -80,11 +80,46 @@ p {
   width: 200px;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  justify-content: space-between;
+  align-items: center;
   gap: 5px;
-  word-break: break-all;
   overflow-x: hidden;
   overflow-y: visible;
+}
+
+.upper-details {
+  width: 100%;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 3fr 1fr;
+  grid-template-areas: 
+  "title removeB"
+  "pages pages";
+}
+
+#title {
+  grid-area: title;
+}
+
+#pages {
+  grid-area: pages;
+}
+
+#remove-button {
+  grid-area: removeB;
+  width: 20px;
+  display: flex;
+  justify-self: end;
+  align-self: start;
+  justify-content: center;
+  align-items: center;
+}
+
+.lower-details {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
 }
 
 .book-spine {
@@ -121,4 +156,14 @@ p {
   border: 2px solid rgb(105, 86, 62);
   cursor: pointer;
   font-size: 20px;
+}
+
+.read {
+  color: rgb(255, 246, 246);
+  font-size: 1.5rem;
+}
+
+.unread {
+  color: rgba(97, 97, 97, 0.445);
+  font-size: 1.5rem;
 }
