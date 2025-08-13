@@ -109,6 +109,7 @@ p {
   grid-area: removeB;
   cursor: pointer;
   width: 20px;
+  font-size: 15px;
   background: none;
   border: none;
   display: flex;
@@ -123,10 +124,12 @@ p {
 }
 
 .lower-details {
+  text-align: end;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: end;
+  gap: 50px;
 }
 
 .book-spine {
@@ -138,8 +141,10 @@ p {
   align-items: center;
 }
 
-.spine-bottom {
+.toggle-read {
   writing-mode: horizontal-tb;
+  user-select: none;
+  cursor: pointer;
 }
 
 .book-spine p {

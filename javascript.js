@@ -51,6 +51,19 @@ function Book(title, author, pages, read, id) {
   this.id = id;
 }
 
+Book.prototype.toggleRead = function(readButton) {
+    if (this.read) {
+      readButton.classList.remove("read");
+      readButton.classList.add("unread");
+      this.read = false;
+    }
+    else {
+      readButton.classList.remove("unread");
+      readButton.classList.add("read");
+      this.read = true;
+    }
+}
+
 function addBookToLibrary(title, author, pages, read, id) {
   id = crypto.randomUUID();
   const book = new Book(title, author, pages, read, id);
@@ -71,9 +84,13 @@ function toggleBookSpine(newBook) {
   title.textContent = bookObj.title;
 
   const read = document.createElement("p");
-  read.classList.add("spine-bottom");
+  read.classList.add("toggle-read");
   read.textContent = "R";
   bookObj.read ? read.classList.add("read") : read.classList.add("unread");
+  read.addEventListener("click", (e) => {
+    e.stopPropagation();
+    bookObj.toggleRead(read);
+  });
 
   newBook.appendChild(title);
   newBook.appendChild(read);
@@ -123,8 +140,13 @@ function expandBook(newBook) {
     const lowerDetails = document.createElement("div");
     lowerDetails.classList.add("lower-details");
     const read = document.createElement("p");
+    read.classList.add("toggle-read");
     read.textContent = "R";
     bookObj.read ? read.classList.add("read") : read.classList.add("unread");
+    read.addEventListener("click", (e) => {
+        e.stopPropagation(); // make clicking easier
+        bookObj.toggleRead(read);
+    });
     const author = document.createElement("p");
     author.textContent = "Author: " + bookObj.author;
 
@@ -166,8 +188,10 @@ function addExpandableBook() {
   updateShelves();
 
   // Add expanding feature
-  newBook.addEventListener("click", () => {
-    expandBook(newBook);
+  newBook.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("toggle-read")) { // makes clicking easier
+      expandBook(newBook);
+    }
   });
 
   // At first the book spine will show
@@ -195,6 +219,7 @@ form.addEventListener('submit', (e) => {
 
   addExpandableBook();
 
+  // Close the dialog after submitting
   dialog.close();
   form.reset();
 });
