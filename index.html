@@ -13,7 +13,7 @@
     <h2>Organize your books and have some fun with coloring your favourite books</h2>
     <dialog>
       <form id="add-book-form">
-        <legend>Add your book</legend>
+        <legend>New Book</legend>
         <section class="title-section">
           <input type="text" id="title-text" name="title" placeholder="Title" required>
         </section>
@@ -22,6 +22,10 @@
         </section>
         <section class="pages-section">
           <input type="number" id="pages-text" name="pages" placeholder="Number of pages" required>
+        </section>
+        <section class="color-section">
+          <input type="color" id="color" name="color" value="#61cf65" required>
+          <label for="color">Choose your book color</label>
         </section>
         <section class="read-section">
           <input type="checkbox" id="read" name="read">

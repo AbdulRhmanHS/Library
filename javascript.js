@@ -38,7 +38,7 @@ function updateShelves() {
 }
 
 // Book constructor
-function Book(title, author, pages, read, id) {
+function Book(title, author, pages, color, read, id) {
 
   if (!new.target) {
     throw Error("You must use the 'new' operator to call the constructor");
@@ -47,6 +47,7 @@ function Book(title, author, pages, read, id) {
   this.title = title;
   this.author = author;
   this.pages = pages;
+  this.color = color;
   this.read = read;
   this.id = id;
 }
@@ -64,11 +65,20 @@ Book.prototype.toggleRead = function(readButton) {
     }
 }
 
-function addBookToLibrary(title, author, pages, read, id) {
+function addBookToLibrary(title, author, pages, color, read, id) {
   id = crypto.randomUUID();
-  const book = new Book(title, author, pages, read, id);
+  const book = new Book(title, author, pages, color, read, id);
   library.push(book);
 }
+
+// Change text contrast based on background color
+const contrast = (color) => {
+  const r = parseInt(color.substr(1, 2), 16);
+  const g = parseInt(color.substr(3, 2), 16);
+  const b = parseInt(color.substr(5, 2), 16);
+  const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+  return (yiq >= 128) ? 'black' : 'white';
+};
 
 function linkBookToObject(newBook) {
   const id = newBook.dataset.id;
@@ -122,6 +132,7 @@ function expandBook(newBook) {
     const removeButton = document.createElement("button");
     removeButton.id = "remove-button";
     removeButton.textContent = "X";
+    removeButton.style.color = contrast(bookObj.color)
     removeButton.addEventListener('click', () => {
       const id = newBook.dataset.id;
       const index = allBooks.indexOf(newBook);
@@ -187,6 +198,11 @@ function addExpandableBook() {
   newBook.dataset.id = library[library.length - 1].id; // Add the object's id to the data-id of the book 
   updateShelves();
 
+  // Set the book color
+  const bookObj = linkBookToObject(newBook);
+  newBook.style.backgroundColor = bookObj.color;
+  newBook.style.color = contrast(bookObj.color);
+
   // Add expanding feature
   newBook.addEventListener("click", (e) => {
     if (!e.target.classList.contains("toggle-read")) { // makes clicking easier
@@ -213,9 +229,10 @@ form.addEventListener('submit', (e) => {
   const title = document.getElementById('title-text').value;
   const author = document.getElementById('author-text').value;
   const pages = document.getElementById('pages-text').value;
+  const color = document.getElementById('color').value;
   const read = document.getElementById('read').checked;
 
-  addBookToLibrary(title, author, pages, read);
+  addBookToLibrary(title, author, pages, color, read);
 
   addExpandableBook();
 
