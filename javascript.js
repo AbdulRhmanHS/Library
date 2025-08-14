@@ -13,7 +13,7 @@ function updateShelves() {
   document.querySelectorAll('.book-shelf').forEach(shelf => shelf.remove());
 
   // width + gap
-  const bookWidth = 40 + 2.5;
+  const bookWidth = 40 + 5.75;
   const containerWidth = mainContainer.clientWidth + 10;
   const booksPerShelf = Math.floor(containerWidth / bookWidth);
   let currentShelf;

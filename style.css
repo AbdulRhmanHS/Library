@@ -198,8 +198,6 @@ input:focus {
   justify-content: space-between;
   align-items: center;
   gap: 5px;
-  overflow-x: hidden;
-  overflow-y: visible;
   font-size: 1em;
 }
 
@@ -275,6 +273,7 @@ input:focus {
   border-radius: var(--border-radius);
   background-color: var(--background-color);
   border: 1px solid var(--shelf-color);
+  overflow-x: auto;
 }
 
 #add-book {
