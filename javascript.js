@@ -237,8 +237,8 @@ form.addEventListener('submit', (e) => {
   addExpandableBook();
 
   // Close the dialog after submitting
-  dialog.close();
-  form.reset();
+/*   dialog.close();
+  form.reset(); */
 });
 
 // Run on load
