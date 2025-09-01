@@ -31,28 +31,23 @@ function updateShelves() {
       currentShelf.classList.add('book-shelf');
       booksContaier.appendChild(currentShelf);
     }
+    // Put the book in the current empty shelf
     if (currentShelf) {
       currentShelf.appendChild(book);
     }
   });
 }
 
-// Book constructor
-function Book(title, author, pages, color, read, id) {
-
-  if (!new.target) {
-    throw Error("You must use the 'new' operator to call the constructor");
+class Book {
+  constructor(title, author, pages, color, read, id) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.color = color;
+    this.read = read;
+    this.id = id;
   }
-
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.color = color;
-  this.read = read;
-  this.id = id;
-}
-
-Book.prototype.toggleRead = function(readButton) {
+  toggleRead(readButton) {
     if (this.read) {
       readButton.classList.remove("read");
       readButton.classList.add("unread");
@@ -63,6 +58,7 @@ Book.prototype.toggleRead = function(readButton) {
       readButton.classList.add("read");
       this.read = true;
     }
+  }
 }
 
 function addBookToLibrary(title, author, pages, color, read, id) {
