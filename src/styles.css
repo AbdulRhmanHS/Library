@@ -7,12 +7,39 @@
   --border-radius: 3px;
 }
 
-body, html {
+/* BASE STYLES */
+
+body,
+html {
   margin: 0;
   padding: 0 10px;
   min-height: 100%;
   background-color: var(--background-color);
 }
+
+p {
+  margin: 0;
+}
+
+input {
+  transition: border-color 0.3s;
+  border: 1px solid var(--light-border-color);
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid var(--main-color);
+}
+
+#title-text,
+#author-text,
+#pages-text {
+  height: 3rem;
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+/* LAYOUT AND TYPOGRAPHY */
 
 header {
   display: flex;
@@ -46,6 +73,8 @@ main {
   gap: 10px;
   height: 100%;
 }
+
+/* DIALOG/FORM COMPONENTS */
 
 dialog {
   border: none;
@@ -86,28 +115,8 @@ legend {
   user-select: none;
 }
 
-p {
-  margin: 0;
-}
-
-input {
-  transition: border-color 0.3s;
-  border: 1px solid var(--light-border-color);
-}
-
-input:focus {
-  outline: none;
-  border: 2px solid var(--main-color);
-}
-
 .title-section {
   margin-top: 5rem;
-}
-
-#title-text, #author-text, #pages-text {
-  height: 3rem;
-  padding: 0 10px;
-  font-size: 14px;
 }
 
 .color-section {
@@ -138,13 +147,16 @@ input:focus {
   border-radius: var(--border-radius);
   border: 1px solid var(--light-border-color);
 }
- 
 
 .read-section {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
+}
+
+#read {
+  accent-color: var(--main-color);
 }
 
 .button-section {
@@ -154,7 +166,8 @@ input:focus {
   width: 100%;
 }
 
-#insert-book, #cancel-button {
+#insert-book,
+#cancel-button {
   border: none;
   height: 3rem;
   color: var(--background-color);
@@ -169,8 +182,24 @@ input:focus {
   background-color: var(--shelf-color);
 }
 
-#read {
-  accent-color: var(--main-color);
+/* LIBRARY/BOOK COMPONENTS */
+
+#add-book {
+  width: 200px;
+  height: 60px;
+  background-color: var(--background-color);
+  color: var(--header-color);
+  border-radius: var(--border-radius);
+  padding: 10px;
+  border: 1px solid var(--light-border-color);
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+#add-book:hover {
+  color: var(--main-color);
+  border-color: var(--main-color);
 }
 
 .book-container {
@@ -220,9 +249,9 @@ input:focus {
   display: grid;
   gap: 5px;
   grid-template-columns: 3fr 1fr;
-  grid-template-areas: 
-  "title removeB"
-  "pages pages";
+  grid-template-areas:
+    'title removeB'
+    'pages pages';
 }
 
 #title {
@@ -266,35 +295,19 @@ input:focus {
   align-items: center;
 }
 
-.toggle-read {
-  writing-mode: horizontal-tb;
-  user-select: none;
-  cursor: pointer;
-}
-
 .book-spine p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-#add-book {
-  width: 200px;
-  height: 60px;
-  background-color: var(--background-color);
-  color: var(--header-color);
-  border-radius: var(--border-radius);
-  padding: 10px;
-  border: 1px solid var(--light-border-color);
+.toggle-read {
+  writing-mode: horizontal-tb;
+  user-select: none;
   cursor: pointer;
-  font-size: 16px;
-  transition: color 0.2s;
 }
 
-#add-book:hover {
-  color: var(--main-color);
-  border-color: var(--main-color);
-}
+/* UTILITY/STATE CLASSES */
 
 .read {
   color: var(--background-color);
@@ -302,11 +315,13 @@ input:focus {
 }
 
 .unread {
-  color: var(--shelf-color);
+  color: var(--background-color);
   font-size: 1.5rem;
+  opacity: 50%;
 }
 
-.read, .unread {
+.read,
+.unread {
   text-shadow:
     -0.5px -0.5px 0 var(--shelf-color),
     0 -0.5px 0 var(--shelf-color),
