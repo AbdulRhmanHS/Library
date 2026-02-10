@@ -1,12 +1,12 @@
 import './styles.css';
-import { Book } from './Book.js';
+import { Book } from './core/Book.js';
 import {
   updateShelves,
   toggleBookSpine,
   expandBook,
   contrast,
   linkBookToObject,
-} from './UI.js';
+} from './core/UI.js';
 
 const mainContainer = document.querySelector('main');
 const booksContainer = document.querySelector('.book-container');
